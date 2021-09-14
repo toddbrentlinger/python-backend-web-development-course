@@ -10,6 +10,6 @@ def contact(request):
 
 def counter(request):
     context = {
-        'amount': len(request.GET['text'].split())
+        'amount': len(request.POST['text'].split())
     }
     return render(request, 'counter.html', context)

@@ -1,6 +1,13 @@
-<h1>Input your text below:</h1>
+{% load static %}
 
-<form method="" action="counter">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h1>Django Python Backend Web Development Course</h1>
+
+<h2>Input your text below:</h2>
+
+<form method="POST" action="counter/">
+    {% csrf_token %}
     <textarea name="text" rows="25" cols="100"></textarea>
     <br>
     <input type="submit">
