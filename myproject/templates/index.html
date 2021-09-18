@@ -19,12 +19,9 @@
 {% for feature in features %}
 <div class="feature">
     <p>Name: {{feature.name}}</p>
-    <p>ID: {{feature.id}}</p>
     <p>Details: {{feature.details}}</p>
-    {% if feature.is_true %}
-    <p>Feature is TRUE</p>
-    {% else %}
-    <p>Feature is FALSE</p>
+    {% if feature.name == 'Fast' %}
+    <p>Zoom! Zoom!</p>
     {% endif %}
 </div>
 <hr>
