@@ -2,8 +2,20 @@
 
 <link rel="stylesheet" href="{% static 'style.css' %}">
 
-<h1>Django Python Backend Web Development Course</h1>
+<header>
+    {% if user.is_authenticated %}
+    <a href="logout">Logout</a>
+    {% else %}
+    <a href="login">Login or Register</a>
+    {% endif %}
+</header>
 
+<h1>Django Python Backend Web Development Course</h1>
+{% if user.is_authenticated %}
+<h2>Welcome, {{user.username}}</h2>
+{% else %}
+<h2>Welcome, Guest</h2>
+{% endif %}
 <h2>Word Counter App</h2>
 
 <h3>Input your text below:</h3>

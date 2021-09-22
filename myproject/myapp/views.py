@@ -51,3 +51,25 @@ def register(request):
     user = User.objects.create_user(username=username, email=email, password=password)
     user.save()
     return redirect('login')
+
+def login(request):
+    # Check request method
+    if request.method != 'POST':
+        return render(request, 'login.html')
+
+    username = request.POST['username']
+    password = request.POST['password']
+    user = auth.authenticate(username=username, password=password)
+
+    # Check User
+    if user is None:
+        messages.info(request, 'Credentials Invalid')
+        return redirect('login')
+
+    # Reach here if User credentials has been authenticated    
+    auth.login(request, user)
+    return redirect('/')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
