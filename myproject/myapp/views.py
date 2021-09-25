@@ -11,7 +11,11 @@ def index(request):
     # feature3 = Feature('Easy to Use', 'Our service is easy to use', 2)
     # feature4 = Feature('Affordable', 'Our service is affordable', 3)
     features = Feature.objects.all()
-    return render(request, 'index.html', {'features': features})
+    posts = [1,2,3,4,5,'Todd','James','Indiana']
+    return render(request, 'index.html', {
+        'features': features,
+        'posts': posts
+    })
 
 def contact(request):
     return HttpResponse('<h1>Contact Page</h1>')
@@ -73,3 +77,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def post(request, pk):
+    return render(request, 'post.html', { 'pk': pk })

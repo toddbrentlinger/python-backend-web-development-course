@@ -38,3 +38,9 @@
 </div>
 <hr>
 {% endfor %}
+
+<h2>Dynamic URL Routing</h2>
+
+{% for post in posts %}
+<h3><a href="{% url 'post' post %}">Post {{post}}</a></h3>
+{% endfor %}
