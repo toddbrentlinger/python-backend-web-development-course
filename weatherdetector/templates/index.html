@@ -37,6 +37,7 @@
     
     <div class="row">
         {% if data.country_code %}
+        {% endif %}
         <div class="col-md-6 col-md-offset-3">
             <h1>{{city}}</h1>
             <h3>country code : {{data.country_code}}</h1>
@@ -45,7 +46,7 @@
             <h5>pressure : {{data.pressure}} </h5>
             <h5>humidity : {{data.humidity}}</h5>
         </div>
-        {% endif %}
+        
     </div>
 </body>
 
