@@ -95,17 +95,42 @@
     <h2>{{room}} - DjChat</h2>
 
     <div id="display">
-
+        <!--
         <div class="container darker">
             <b>Tom</b>
             <p>Hello Everyone, How Are You Guys Doing?</p>
             <span class="time-left">20th, April 2021</span>
         </div>
+        -->
 
     </div>
 
     <script>
         
+        $(document).ready(function() {
+            setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/getMessages/{{room}}/',
+                    success: function(response) {
+                        //console.log(response);
+                        $('#display').empty();
+                        response.messages.forEach(message => {
+                            const temp = '<div class="container darker"><b>'
+                                + message.user + '</b><p>'
+                                + message.value 
+                                + '</p><span class="time-left">'
+                                + message.date + '</span></div>';
+                            $('#display').append(temp);
+                        });
+                    },
+                    error: function(response) {
+                        alert('An error occurred');
+                    },
+                });
+            }, 1000);
+        });
+
     </script>
 
     <div class="container">
@@ -121,7 +146,26 @@
 </body>
 
 <script type="text/javascript">
-    
+
+    $(document).on('submit', '#post-form', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '/send',
+            data: {
+                username: $('#username').val(),
+                room_id: $('#room_id').val(),
+                message: $('#message').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data) {
+                //alert(data);
+            },
+        });
+        document.getElementById('message').value = '';
+    });
+
 </script>
 
 </html>
